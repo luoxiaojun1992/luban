@@ -1,0 +1,26 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="wasm_exec.js"></script>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch("luban.wasm"), go.importObject)
+            .then((result) => {
+                go.run(result.instance);
+
+                fetch("graph.json")
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log(JSON.parse(LubanProgramParse(data)));
+                    })
+                    .catch(err => {
+                        console.error("Failed to fetch json example: " + err);
+                    });
+            })
+            .catch((err) => {
+                console.error("Failed to instantiate wasm: " + err);
+            });
+    </script>
+</head>
+<body></body>
+</html>

@@ -1,0 +1,97 @@
+{
+    "node_list": [
+        {
+            "id": 1,
+            "name": "printHello",
+            "node_type": "func",
+            "function": {
+                "code_list": [
+                    {
+                        "content": "println(\"Hello Luban\")",
+                        "is_active": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "name": "demoLoop",
+            "node_type": "loop",
+            "loop": {
+                "cond": "true",
+                "code_list": [
+                    {
+                        "content": "println(\"Loop stmt1\")",
+                        "is_active": true
+                    },
+                    {
+                        "content": "println(\"Loop stmt2\")",
+                        "is_active": true
+                    },
+                    {
+                        "content": "break",
+                        "is_active": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "name": "demoTwoBranch",
+            "node_type": "two_branch",
+            "two_branch": {
+                "cond": "true"
+            }
+        },
+        {
+            "id": 4,
+            "name": "matchBranchPrintHello",
+            "node_type": "func",
+            "function": {
+                "code_list": [
+                    {
+                        "content": "println(\"Hello match branch\")",
+                        "is_active": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 5,
+            "name": "elseBranchPrintHello",
+            "node_type": "func",
+            "function": {
+                "code_list": [
+                    {
+                        "content": "println(\"Hello else branch\")",
+                        "is_active": true
+                    }
+                ]
+            }
+        }
+    ],
+    "edge_list": [
+        {
+            "src": 1,
+            "dst": 2
+        },
+        {
+            "src": 2,
+            "dst": 3
+        },
+        {
+            "src": 3,
+            "dst": 4,
+            "attrs":{
+                "branch_type": "match"
+            }
+        },
+        {
+            "src": 3,
+            "dst": 5,
+            "attrs":{
+                "branch_type": "else"
+            }
+        }
+    ]
+}
