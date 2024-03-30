@@ -29,3 +29,6 @@ jobs:
 
     - name: Build WASM
       run: make build-wasm
+
+    - name: Build UI
+      run: make build-ui

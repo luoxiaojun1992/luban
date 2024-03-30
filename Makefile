@@ -1,7 +1,7 @@
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: all
-all: tidy vendor fmt lint test
+all: tidy vendor fmt lint test ui-fmt ui-lint
 
 .PHONY: tidy
 tidy:
@@ -54,3 +54,15 @@ build:
 .PHONY: build-wasm
 build-wasm:
 	GOOS=js GOARCH=wasm go build -o bin/luban.wasm cmd/wasm/main.go
+
+.PHONY: ui-fmt
+ui-fmt:
+	cd portal/luban-ui && npm run format && cd ../../
+
+.PHONY: ui-lint
+ui-lint:
+	cd portal/luban-ui && npm run lint && cd ../../
+
+.PHONY: build-ui
+build-ui:
+	cd portal/luban-ui && npm run build && cd ../../
