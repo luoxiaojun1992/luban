@@ -55,6 +55,10 @@ build:
 build-wasm:
 	GOOS=js GOARCH=wasm go build -o bin/luban.wasm cmd/wasm/main.go
 
+.PHONY: ui-install
+ui-install:
+	cd portal/luban-ui && npm install && cd ../../
+
 .PHONY: ui-fmt
 ui-fmt:
 	cd portal/luban-ui && npm run format && cd ../../
