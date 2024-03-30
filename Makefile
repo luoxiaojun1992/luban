@@ -1,7 +1,7 @@
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: all
-all: tidy vendor fmt lint test ui-fmt ui-lint
+all: tidy vendor fmt lint test ui-install ui-fmt ui-lint
 
 .PHONY: tidy
 tidy:
