@@ -10,4 +10,8 @@ const (
 )
 
 type INode interface {
+	GetName() string
+	GetType() NodeType
+	HasNext() bool
+	GetNext() INode
 }

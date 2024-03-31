@@ -2,6 +2,7 @@ package component
 
 import (
 	"errors"
+	"fmt"
 
 	commonElementsFunction "github.com/luoxiaojun1992/luban/engine/elements/function"
 	commonElementsVariable "github.com/luoxiaojun1992/luban/engine/elements/variable"
@@ -29,16 +30,23 @@ type ComponentInfo struct {
 	OutputTypes []*commonElementsVariable.VarType
 }
 
-func (ci *ComponentInfo) GetAttr(key string) interface{} {
-	//todo
-	return nil
+func (ci *ComponentInfo) GetAttr(key string, defaultValue interface{}) interface{} {
+	if val, ok := ci.Attrs[key]; ok {
+		return val
+	} else {
+		return defaultValue
+	}
 }
 
 func init() {
 	plugins = make(map[ComponentType]func(*ComponentInfo) node.INode)
 
 	AddPlugin(ComponentPrint, func(ci *ComponentInfo) node.INode {
-		//todo build print code using attrs
+		printValAttr := ci.GetAttr("print_val", "")
+		printValStr := ""
+		if printVal, ok := printValAttr.(commonElementsVariable.Value); ok {
+			printValStr = printVal.ToString()
+		}
 		return &PrintComponent{
 			Function: node.Function{
 				Common: node.Common{
@@ -53,6 +61,9 @@ func init() {
 					OutputVars:  ci.OutputVars,
 					OutputTypes: ci.OutputTypes,
 					Params:      ci.Params,
+				},
+				CodeList: []string{
+					fmt.Sprintf("println(%s)", printValStr),
 				},
 			},
 		}

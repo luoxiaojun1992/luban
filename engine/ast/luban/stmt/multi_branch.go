@@ -19,12 +19,12 @@ func (mb *MultiBranch) ToGoASTStmt() (goAST.Stmt, error) {
 	}
 
 	if len(mb.Matches) > 0 {
-		lubanASTBodyBlock := &Block{}
+		astBodyBlock := &Block{}
 		for _, match := range mb.Matches {
-			lubanASTBodyBlock.Stmts = append(lubanASTBodyBlock.Stmts, match)
+			astBodyBlock.Stmts = append(astBodyBlock.Stmts, match)
 		}
 
-		goASTBodyBlockStmt, err := lubanASTBodyBlock.ToGoASTBlockStmt()
+		goASTBodyBlockStmt, err := astBodyBlock.ToGoASTBlockStmt()
 		if err != nil {
 			return nil, err
 		}

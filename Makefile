@@ -30,7 +30,7 @@ bin/revive:
 
 .PHONY: golangci-lint
 golangci-lint: bin/golangci-lint
-	bin/golangci-lint run --skip-dirs=data/test_stubs
+	bin/golangci-lint run
 
 .PHONY: revive
 revive: bin/revive
@@ -45,7 +45,7 @@ lint: vet golangci-lint revive
 
 .PHONY: test
 test:
-	go list ./... | grep -v "data/test_stubs" | xargs go test -cover -coverprofile=coverage.out
+	go list ./... | xargs go test -cover -coverprofile=coverage.out
 
 .PHONY: build
 build:
@@ -66,6 +66,10 @@ ui-fmt:
 .PHONY: ui-lint
 ui-lint:
 	cd portal/luban-ui && npm run lint && cd ../../
+
+.PHONY: ui-run-dev
+ui-run-dev:
+	cd portal/luban-ui && npm run dev
 
 .PHONY: build-ui
 build-ui:

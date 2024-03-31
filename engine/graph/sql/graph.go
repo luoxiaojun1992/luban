@@ -26,7 +26,17 @@ type Graph struct {
 
 func (g *Graph) toASTInsertStmt() *lubanSQLStmt.InsertStmt {
 	//todo
-	return nil
+	astInsertStmt := &lubanSQLStmt.InsertStmt{}
+	startNode := g.parseNode()
+	startNode.GetType()
+	for {
+		if !startNode.HasNext() {
+			break
+		}
+
+		startNode = startNode.GetNext()
+	}
+	return astInsertStmt
 }
 
 func (g *Graph) toASTSelectStmt() *lubanSQLStmt.SelectStmt {
@@ -67,6 +77,5 @@ func (g *Graph) ToASTStmt() (lubanSQLStmt.IStmt, error) {
 
 func (g *Graph) ToAllASTNode() ([]lubanAST.INode, error) {
 	//todo
-	g.parseNode()
 	return nil, nil
 }

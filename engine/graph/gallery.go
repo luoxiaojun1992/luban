@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	lubanAST "github.com/luoxiaojun1992/luban/engine/ast/luban"
+	"github.com/luoxiaojun1992/luban/engine/graph/program"
 )
 
 type GraphType string
@@ -17,8 +18,13 @@ type IGraph interface {
 	ToAllASTNode() ([]lubanAST.INode, error)
 }
 
+type Graph struct {
+	GraphType GraphType `json:"graph_type"`
+	JsonData  string    `json:"json_data"`
+}
+
 type Gallery struct {
-	GraphList []string `json:"graph_list"`
+	GraphList []*Graph `json:"graph_list"`
 	EdgeList  []*Edge  `json:"edge_list"`
 }
 
@@ -32,6 +38,23 @@ func ParseJSON(jsonData string) (*Gallery, error) {
 }
 
 func (g *Gallery) ToAllASTNode() ([]lubanAST.INode, error) {
-	//todo
-	return nil, nil
+	//todo build main func
+	var allASTNodeList []lubanAST.INode
+
+	for _, graphData := range g.GraphList {
+		if graphData.GraphType == GraphProgram {
+			programGraph, err := program.ParseJSON(graphData.JsonData)
+			if err != nil {
+				return nil, err
+			}
+
+			astNodeList, err := programGraph.ToAllASTNode()
+			if err != nil {
+				return nil, err
+			}
+			allASTNodeList = append(allASTNodeList, astNodeList...)
+		}
+	}
+
+	return allASTNodeList, nil
 }

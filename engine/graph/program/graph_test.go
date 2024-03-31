@@ -33,15 +33,15 @@ func TestToAllASTNode(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	lubanASTNodeList, err := graphModel.ToAllASTNode()
+	astNodeList, err := graphModel.ToAllASTNode()
 	if err != nil {
 		t.Fatal(err)
 	}
 
 	assert := gomega.NewWithT(t)
 
-	for _, lubanASTNode := range lubanASTNodeList {
-		goASTNode, err := lubanASTNode.ToGoASTNode()
+	for _, astNode := range astNodeList {
+		goASTNode, err := astNode.ToGoASTNode()
 		if err != nil {
 			t.Fatal(err)
 		}
