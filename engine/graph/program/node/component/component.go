@@ -18,6 +18,7 @@ var plugins map[string]func(*ComponentInfo) node.INode
 
 type ComponentInfo struct {
 	Name        string
+	Attrs       map[string]interface{}
 	NodeID      int
 	NodeName    string
 	Caller      *commonElementsFunction.Caller
@@ -31,7 +32,8 @@ type ComponentInfo struct {
 func init() {
 	plugins = make(map[string]func(*ComponentInfo) node.INode)
 
-	AddPlugin("print", func(ci *ComponentInfo) node.INode {
+	AddPlugin(ComponentPrint, func(ci *ComponentInfo) node.INode {
+		//todo build print code using attrs
 		return &PrintComponent{
 			Function: node.Function{
 				Common: node.Common{
