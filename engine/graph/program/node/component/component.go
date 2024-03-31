@@ -17,7 +17,7 @@ const (
 var plugins map[ComponentType]func(*ComponentInfo) node.INode
 
 type ComponentInfo struct {
-	TypeName    string
+	TypeName    ComponentType
 	Attrs       map[string]interface{}
 	NodeID      int
 	NodeName    string
