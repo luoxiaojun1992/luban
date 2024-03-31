@@ -14,10 +14,10 @@ const (
 	ComponentPrint ComponentType = "print"
 )
 
-var plugins map[string]func(*ComponentInfo) node.INode
+var plugins map[ComponentType]func(*ComponentInfo) node.INode
 
 type ComponentInfo struct {
-	Name        string
+	TypeName    string
 	Attrs       map[string]interface{}
 	NodeID      int
 	NodeName    string
@@ -29,8 +29,13 @@ type ComponentInfo struct {
 	OutputTypes []*commonElementsVariable.VarType
 }
 
+func (ci *ComponentInfo) GetAttr(key string) interface{} {
+	//todo
+	return nil
+}
+
 func init() {
-	plugins = make(map[string]func(*ComponentInfo) node.INode)
+	plugins = make(map[ComponentType]func(*ComponentInfo) node.INode)
 
 	AddPlugin(ComponentPrint, func(ci *ComponentInfo) node.INode {
 		//todo build print code using attrs
@@ -54,12 +59,12 @@ func init() {
 	})
 }
 
-func AddPlugin(name string, plugin func(*ComponentInfo) node.INode) {
-	plugins[name] = plugin
+func AddPlugin(componentType ComponentType, plugin func(*ComponentInfo) node.INode) {
+	plugins[componentType] = plugin
 }
 
 func CreateComponent(ci *ComponentInfo) (node.INode, error) {
-	plugin, pluginExists := plugins[ci.Name]
+	plugin, pluginExists := plugins[ci.TypeName]
 	if !pluginExists {
 		return nil, errors.New("plugin not exists")
 	}
