@@ -41,17 +41,47 @@ func (g *Graph) toASTInsertStmt() *lubanSQLStmt.InsertStmt {
 
 func (g *Graph) toASTSelectStmt() *lubanSQLStmt.SelectStmt {
 	//todo
-	return nil
+	astSelectStmt := &lubanSQLStmt.SelectStmt{}
+	startNode := g.parseNode()
+	startNode.GetType()
+	for {
+		if !startNode.HasNext() {
+			break
+		}
+
+		startNode = startNode.GetNext()
+	}
+	return astSelectStmt
 }
 
 func (g *Graph) toASTUpdateStmt() *lubanSQLStmt.UpdateStmt {
 	//todo
-	return nil
+	astUpdateStmt := &lubanSQLStmt.UpdateStmt{}
+	startNode := g.parseNode()
+	startNode.GetType()
+	for {
+		if !startNode.HasNext() {
+			break
+		}
+
+		startNode = startNode.GetNext()
+	}
+	return astUpdateStmt
 }
 
 func (g *Graph) toASTDeleteStmt() *lubanSQLStmt.DeleteStmt {
 	//todo
-	return nil
+	astDeleteStmt := &lubanSQLStmt.DeleteStmt{}
+	startNode := g.parseNode()
+	startNode.GetType()
+	for {
+		if !startNode.HasNext() {
+			break
+		}
+
+		startNode = startNode.GetNext()
+	}
+	return astDeleteStmt
 }
 
 func (g *Graph) parseNode() node.INode {
