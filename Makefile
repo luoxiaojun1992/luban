@@ -34,7 +34,7 @@ golangci-lint: bin/golangci-lint
 
 .PHONY: revive
 revive: bin/revive
-	bin/revive -config revive.toml -formatter friendly -exclude ./vendor/... -exclude ./data/test_stubs/... ./...
+	bin/revive -config revive.toml -formatter friendly -exclude ./vendor/... ./...
 
 .PHONY: vet
 vet:
