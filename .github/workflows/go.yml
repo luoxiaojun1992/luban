@@ -32,3 +32,9 @@ jobs:
 
     - name: Build UI
       run: make build-ui
+
+    - name: Upload bin/luban.wasm
+      uses: actions/upload-artifact@v4
+      with:
+        name: luban.wasm
+        path: bin/luban.wasm
