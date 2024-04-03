@@ -33,9 +33,9 @@ type ComponentInfo struct {
 func (ci *ComponentInfo) GetAttr(key string, defaultValue interface{}) interface{} {
 	if val, ok := ci.Attrs[key]; ok {
 		return val
-	} else {
-		return defaultValue
 	}
+
+	return defaultValue
 }
 
 func init() {

@@ -20,7 +20,7 @@ type IGraph interface {
 
 type Graph struct {
 	GraphType GraphType `json:"graph_type"`
-	JsonData  string    `json:"json_data"`
+	JSONData  string    `json:"json_data"`
 }
 
 type Gallery struct {
@@ -43,7 +43,7 @@ func (g *Gallery) ToAllASTNode() ([]lubanAST.INode, error) {
 
 	for _, graphData := range g.GraphList {
 		if graphData.GraphType == GraphProgram {
-			programGraph, err := program.ParseJSON(graphData.JsonData)
+			programGraph, err := program.ParseJSON(graphData.JSONData)
 			if err != nil {
 				return nil, err
 			}
