@@ -155,10 +155,10 @@ func (nd *NodeData) ToLoopNode() (node.INode, error) {
 func (nd *NodeData) ToComponent() (node.INode, error) {
 	//todo
 	if nd.Component != nil {
-		switch nd.Component.ComponentType {
-		case component.ComponentPrint:
-			//todo
+		componentInfo := &component.ComponentInfo{
+			TypeName: nd.Component.ComponentType,
 		}
+		return component.CreateComponent(componentInfo)
 	}
 	return nil, nil
 }
