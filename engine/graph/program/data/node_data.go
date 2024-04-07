@@ -158,6 +158,14 @@ func (nd *NodeData) ToComponent() (node.INode, error) {
 		componentInfo := &component.ComponentInfo{
 			TypeName: nd.Component.ComponentType,
 		}
+		if attrsLen := len(nd.Component.Attrs); attrsLen > 0 {
+			attrs := make(map[string]interface{}, attrsLen)
+			for key, val := range nd.Component.Attrs {
+				//todo copy val
+				attrs[key] = val
+			}
+			componentInfo.Attrs = attrs
+		}
 		return component.CreateComponent(componentInfo)
 	}
 	return nil, nil
