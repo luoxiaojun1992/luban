@@ -16,10 +16,17 @@ bin/goimports:
 
 .PHONY: goimports
 goimports: bin/goimports
-	go list ./... | xargs bin/goimports -w
+	bin/goimports -w .
+
+bin/gofumpt:
+	mkdir -p temp && cd temp && go mod init temp && GOBIN=$(PROJECT_DIR)/bin go install mvdan.cc/gofumpt@latest && cd .. && rm -rf temp
+
+.PHONY: gofumpt
+gofumpt: bin/gofumpt
+	bin/gofumpt -l -w .
 
 .PHONY: fmt
-fmt: goimports
+fmt: goimports gofumpt
 	go list ./... | xargs go fmt
 
 bin/golangci-lint:
