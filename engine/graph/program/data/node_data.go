@@ -153,10 +153,11 @@ func (nd *NodeData) ToLoopNode() (node.INode, error) {
 }
 
 func (nd *NodeData) ToComponent() (node.INode, error) {
-	//todo
 	if nd.Component != nil {
 		componentInfo := &component.ComponentInfo{
 			TypeName: nd.Component.ComponentType,
+			NodeID:   nd.ID,
+			NodeName: nd.Name,
 		}
 		if attrsLen := len(nd.Component.Attrs); attrsLen > 0 {
 			attrs := make(map[string]interface{}, attrsLen)
@@ -165,6 +166,22 @@ func (nd *NodeData) ToComponent() (node.INode, error) {
 				attrs[key] = val
 			}
 			componentInfo.Attrs = attrs
+		}
+		if nd.Context != nil {
+			if nd.Context.HasCaller() {
+				componentInfo.Caller = nd.Context.Caller.Copy()
+			}
+			componentInfo.IsAsync = nd.Context.IsAsync
+			componentInfo.InputVars = append(make([]string, 0, len(nd.Context.InputVars)), nd.Context.InputVars...)
+			componentInfo.OutputVars = append(make([]string, 0, len(nd.Context.OutputVars)), nd.Context.OutputVars...)
+			componentInfo.Params = make([]*commonElementsFunction.Param, 0, len(nd.Context.Params))
+			for _, param := range nd.Context.Params {
+				componentInfo.Params = append(componentInfo.Params, param.Copy())
+			}
+			componentInfo.OutputTypes = make([]*commonElementsVariable.VarType, 0, len(nd.Context.OutputTypes))
+			for _, varType := range nd.Context.OutputTypes {
+				componentInfo.OutputTypes = append(componentInfo.OutputTypes, varType.Copy())
+			}
 		}
 		return component.CreateComponent(componentInfo)
 	}

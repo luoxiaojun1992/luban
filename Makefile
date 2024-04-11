@@ -20,7 +20,7 @@ goimports: bin/goimports
 
 .PHONY: fmt
 fmt: goimports
-	go fmt ./...
+	go list ./... | xargs go fmt
 
 bin/golangci-lint:
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.57.2
@@ -38,7 +38,7 @@ revive: bin/revive
 
 .PHONY: vet
 vet:
-	go vet ./...
+	go list ./... | xargs go vet
 
 .PHONY: lint
 lint: vet golangci-lint revive
