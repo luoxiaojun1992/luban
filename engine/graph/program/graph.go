@@ -102,11 +102,11 @@ func (g *Graph) ToASTNodeList() ([]lubanAST.INode, error) {
 	for {
 		subAstNodeList := startNode.ToASTNodeList()
 		astNodeList = append(astNodeList, subAstNodeList...)
-		//todo support only ast func node now
+		// todo support only ast func node now
 		astFuncCallExpr := &lubanASTStmt.Expr{}
 
-		//todo input & output vars, handle concurrent lock
-		//var map, if asyn func, store var in map, check lock if var exists in var map
+		// todo input & output vars, handle concurrent lock
+		// var map, if asyn func, store var in map, check lock if var exists in var map
 		callParams := ""
 		if startNode.HasInputVars() {
 			callParams = strings.Join(startNode.GetInputVars(), ", ")
@@ -141,6 +141,6 @@ func (g *Graph) ToASTNodeList() ([]lubanAST.INode, error) {
 }
 
 func (g *Graph) ToExtraASTNodeList() ([]lubanAST.INode, error) {
-	//todo
+	// todo
 	return nil, nil
 }

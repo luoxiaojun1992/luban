@@ -38,7 +38,7 @@ func ParseJSON(jsonData string) (*Gallery, error) {
 }
 
 func (g *Gallery) ToAllASTNode() ([]lubanAST.INode, error) {
-	//todo build main func
+	// todo build main func
 	var allASTNodeList []lubanAST.INode
 
 	for _, graphData := range g.GraphList {

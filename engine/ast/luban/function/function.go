@@ -51,7 +51,7 @@ func (f *Function) ToGoASTFuncDecl() (*ast.FuncDecl, error) {
 			List: make([]*ast.Field, 0, len(f.Params)),
 		}
 		for _, param := range f.Params {
-			//todo support multi param names with same type
+			// todo support multi param names with same type
 			goASTParamsFieldList.List = append(goASTParamsFieldList.List, &ast.Field{
 				Names: []*ast.Ident{ast.NewIdent(param.Name)},
 				Type:  ast.NewIdent(param.Type.String()),
@@ -66,7 +66,7 @@ func (f *Function) ToGoASTFuncDecl() (*ast.FuncDecl, error) {
 			List: make([]*ast.Field, 0, len(f.OutputTypes)),
 		}
 		for _, outputType := range f.OutputTypes {
-			//todo support output var name
+			// todo support output var name
 			goASTResultsFieldList.List = append(goASTResultsFieldList.List, &ast.Field{
 				Type: ast.NewIdent(outputType.String()),
 			})

@@ -1,4 +1,3 @@
 package data
 
-type Block struct {
-}
+type Block struct{}

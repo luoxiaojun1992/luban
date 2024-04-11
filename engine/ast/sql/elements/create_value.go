@@ -8,6 +8,6 @@ type CreateValue struct {
 }
 
 func (cv *CreateValue) ToRaw() string {
-	//todo
+	// todo
 	return ""
 }

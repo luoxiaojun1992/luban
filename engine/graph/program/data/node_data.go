@@ -44,7 +44,7 @@ func (nd *NodeData) ToFunctionNode() (node.INode, error) {
 		Context: node.Context{},
 	}
 
-	//todo abstract
+	// todo abstract
 	if nd.Context != nil {
 		if nd.Context.HasCaller() {
 			nodeFunc.Context.Caller = nd.Context.Caller.Copy()
@@ -85,7 +85,7 @@ func (nd *NodeData) ToTwoBranchNode() (node.INode, error) {
 		Context: node.Context{},
 	}
 
-	//todo abstract
+	// todo abstract
 	if nd.Context != nil {
 		if nd.Context.HasCaller() {
 			nodeTwoBranch.Context.Caller = nd.Context.Caller.Copy()
@@ -131,7 +131,7 @@ func (nd *NodeData) ToLoopNode() (node.INode, error) {
 		}
 	}
 
-	//todo abstract
+	// todo abstract
 	if nd.Context != nil {
 		if nd.Context.HasCaller() {
 			nodeLoop.Context.Caller = nd.Context.Caller.Copy()
@@ -162,7 +162,7 @@ func (nd *NodeData) ToComponent() (node.INode, error) {
 		if attrsLen := len(nd.Component.Attrs); attrsLen > 0 {
 			attrs := make(map[string]interface{}, attrsLen)
 			for key, val := range nd.Component.Attrs {
-				//todo copy val
+				// todo copy val
 				attrs[key] = val
 			}
 			componentInfo.Attrs = attrs

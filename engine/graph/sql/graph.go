@@ -25,7 +25,7 @@ type Graph struct {
 }
 
 func (g *Graph) toASTInsertStmt() *lubanSQLStmt.InsertStmt {
-	//todo
+	// todo
 	astInsertStmt := &lubanSQLStmt.InsertStmt{}
 	startNode := g.parseNode()
 	startNode.GetType()
@@ -40,7 +40,7 @@ func (g *Graph) toASTInsertStmt() *lubanSQLStmt.InsertStmt {
 }
 
 func (g *Graph) toASTSelectStmt() *lubanSQLStmt.SelectStmt {
-	//todo
+	// todo
 	astSelectStmt := &lubanSQLStmt.SelectStmt{}
 	startNode := g.parseNode()
 	startNode.GetType()
@@ -55,7 +55,7 @@ func (g *Graph) toASTSelectStmt() *lubanSQLStmt.SelectStmt {
 }
 
 func (g *Graph) toASTUpdateStmt() *lubanSQLStmt.UpdateStmt {
-	//todo
+	// todo
 	astUpdateStmt := &lubanSQLStmt.UpdateStmt{}
 	startNode := g.parseNode()
 	startNode.GetType()
@@ -70,7 +70,7 @@ func (g *Graph) toASTUpdateStmt() *lubanSQLStmt.UpdateStmt {
 }
 
 func (g *Graph) toASTDeleteStmt() *lubanSQLStmt.DeleteStmt {
-	//todo
+	// todo
 	astDeleteStmt := &lubanSQLStmt.DeleteStmt{}
 	startNode := g.parseNode()
 	startNode.GetType()
@@ -85,12 +85,12 @@ func (g *Graph) toASTDeleteStmt() *lubanSQLStmt.DeleteStmt {
 }
 
 func (g *Graph) parseNode() node.INode {
-	//todo
+	// todo
 	return nil
 }
 
 func (g *Graph) ToASTStmt() (lubanSQLStmt.IStmt, error) {
-	//todo parse ast func for gallery, return sql str
+	// todo parse ast func for gallery, return sql str
 	switch g.GraphType {
 	case GraphInsert:
 		return g.toASTInsertStmt(), nil
@@ -106,6 +106,6 @@ func (g *Graph) ToASTStmt() (lubanSQLStmt.IStmt, error) {
 }
 
 func (g *Graph) ToAllASTNode() ([]lubanAST.INode, error) {
-	//todo
+	// todo
 	return nil, nil
 }
