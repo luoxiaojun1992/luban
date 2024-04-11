@@ -16,7 +16,7 @@ bin/goimports:
 
 .PHONY: goimports
 goimports: bin/goimports
-	bin/goimports -w .
+	go list ./... | xargs bin/goimports -w
 
 .PHONY: fmt
 fmt: goimports
