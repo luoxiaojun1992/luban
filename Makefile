@@ -16,7 +16,7 @@ bin/goimports:
 
 .PHONY: goimports
 goimports: bin/goimports
-	bin/goimports -w .
+	bin/goimports -l -w .
 
 bin/gofumpt:
 	mkdir -p temp && cd temp && go mod init temp && GOBIN=$(PROJECT_DIR)/bin go install mvdan.cc/gofumpt@latest && cd .. && rm -rf temp
