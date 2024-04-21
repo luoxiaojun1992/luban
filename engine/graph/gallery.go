@@ -18,14 +18,20 @@ type IGraph interface {
 	ToAllASTNode() ([]lubanAST.INode, error)
 }
 
-type Graph struct {
+type GraphWrap struct {
+	Graph *GraphData
+	Prev  *GraphWrap
+	Next  *GraphWrap
+}
+
+type GraphData struct {
 	GraphType GraphType `json:"graph_type"`
 	JSONData  string    `json:"json_data"`
 }
 
 type Gallery struct {
-	GraphList []*Graph `json:"graph_list"`
-	EdgeList  []*Edge  `json:"edge_list"`
+	GraphList []*GraphData `json:"graph_list"`
+	EdgeList  []*Edge      `json:"edge_list"`
 }
 
 func ParseJSON(jsonData string) (*Gallery, error) {
