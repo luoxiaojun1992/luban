@@ -24,10 +24,17 @@ type Graph struct {
 	EdgeList  []*Edge          `json:"edge_list"`
 }
 
-func (g *Graph) toASTInsertStmt() *lubanSQLStmt.InsertStmt {
+func (g *Graph) toASTInsertStmt() (*lubanSQLStmt.InsertStmt, error) {
 	// todo
-	astInsertStmt := &lubanSQLStmt.InsertStmt{}
+	
 	startNode := g.parseNode()
+
+        if startNode == nil {
+		return nil, errors.New("missing start node")
+	}
+
+        astInsertStmt := &lubanSQLStmt.InsertStmt{}
+	
 	startNode.GetType()
 	for {
 		if !startNode.HasNext() {
@@ -36,7 +43,7 @@ func (g *Graph) toASTInsertStmt() *lubanSQLStmt.InsertStmt {
 
 		startNode = startNode.GetNext()
 	}
-	return astInsertStmt
+	return astInsertStmt, nil
 }
 
 func (g *Graph) toASTSelectStmt() *lubanSQLStmt.SelectStmt {
@@ -93,7 +100,7 @@ func (g *Graph) ToASTStmt() (lubanSQLStmt.IStmt, error) {
 	// todo parse ast func for gallery, return sql str
 	switch g.GraphType {
 	case GraphInsert:
-		return g.toASTInsertStmt(), nil
+		return g.toASTInsertStmt()
 	case GraphSelect:
 		return g.toASTSelectStmt(), nil
 	case GraphUpdate:
