@@ -46,10 +46,15 @@ func (g *Graph) toASTInsertStmt() (*lubanSQLStmt.InsertStmt, error) {
 	return astInsertStmt, nil
 }
 
-func (g *Graph) toASTSelectStmt() *lubanSQLStmt.SelectStmt {
+func (g *Graph) toASTSelectStmt() (*lubanSQLStmt.SelectStmt, error) {
 	// todo
-	astSelectStmt := &lubanSQLStmt.SelectStmt{}
 	startNode := g.parseNode()
+
+        if startNode == nil {
+		return nil, errors.New("missing start node")
+	}
+	
+	astSelectStmt := &lubanSQLStmt.SelectStmt{}
 	startNode.GetType()
 	for {
 		if !startNode.HasNext() {
@@ -58,7 +63,7 @@ func (g *Graph) toASTSelectStmt() *lubanSQLStmt.SelectStmt {
 
 		startNode = startNode.GetNext()
 	}
-	return astSelectStmt
+	return astSelectStmt, nil
 }
 
 func (g *Graph) toASTUpdateStmt() *lubanSQLStmt.UpdateStmt {
@@ -102,7 +107,7 @@ func (g *Graph) ToASTStmt() (lubanSQLStmt.IStmt, error) {
 	case GraphInsert:
 		return g.toASTInsertStmt()
 	case GraphSelect:
-		return g.toASTSelectStmt(), nil
+		return g.toASTSelectStmt()
 	case GraphUpdate:
 		return g.toASTUpdateStmt(), nil
 	case GraphDelete:
