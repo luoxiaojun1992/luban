@@ -66,10 +66,15 @@ func (g *Graph) toASTSelectStmt() (*lubanSQLStmt.SelectStmt, error) {
 	return astSelectStmt, nil
 }
 
-func (g *Graph) toASTUpdateStmt() *lubanSQLStmt.UpdateStmt {
+func (g *Graph) toASTUpdateStmt() (*lubanSQLStmt.UpdateStmt, error) {
 	// todo
-	astUpdateStmt := &lubanSQLStmt.UpdateStmt{}
 	startNode := g.parseNode()
+
+        if startNode == nil {
+		return nil, errors.New("missing start node")
+	}
+	
+	astUpdateStmt := &lubanSQLStmt.UpdateStmt{}
 	startNode.GetType()
 	for {
 		if !startNode.HasNext() {
@@ -78,13 +83,18 @@ func (g *Graph) toASTUpdateStmt() *lubanSQLStmt.UpdateStmt {
 
 		startNode = startNode.GetNext()
 	}
-	return astUpdateStmt
+	return astUpdateStmt, nil
 }
 
-func (g *Graph) toASTDeleteStmt() *lubanSQLStmt.DeleteStmt {
+func (g *Graph) toASTDeleteStmt() (*lubanSQLStmt.DeleteStmt, error) {
 	// todo
-	astDeleteStmt := &lubanSQLStmt.DeleteStmt{}
 	startNode := g.parseNode()
+
+        if startNode == nil {
+		return nil, errors.New("missing start node")
+	}
+	
+	astDeleteStmt := &lubanSQLStmt.DeleteStmt{}
 	startNode.GetType()
 	for {
 		if !startNode.HasNext() {
@@ -93,7 +103,7 @@ func (g *Graph) toASTDeleteStmt() *lubanSQLStmt.DeleteStmt {
 
 		startNode = startNode.GetNext()
 	}
-	return astDeleteStmt
+	return astDeleteStmt, nil
 }
 
 func (g *Graph) parseNode() node.INode {
