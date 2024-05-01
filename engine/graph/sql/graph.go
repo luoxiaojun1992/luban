@@ -119,9 +119,9 @@ func (g *Graph) ToASTStmt() (lubanSQLStmt.IStmt, error) {
 	case GraphSelect:
 		return g.toASTSelectStmt()
 	case GraphUpdate:
-		return g.toASTUpdateStmt(), nil
+		return g.toASTUpdateStmt()
 	case GraphDelete:
-		return g.toASTDeleteStmt(), nil
+		return g.toASTDeleteStmt()
 	}
 
 	return nil, errors.New("invalid sql graph type")
