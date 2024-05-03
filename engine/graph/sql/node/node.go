@@ -14,4 +14,6 @@ type INode interface {
 	GetType() NodeType
 	HasNext() bool
 	GetNext() INode
+
+	GetTable() string
 }
