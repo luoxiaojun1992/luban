@@ -12,8 +12,12 @@ const (
 type INode interface {
 	GetName() string
 	GetType() NodeType
+	HasPrev() bool
+	GetPrev() INode
+	SetPrev(prev INode)
 	HasNext() bool
 	GetNext() INode
+	SetNext(next INode)
 
 	GetTable() string
 }
