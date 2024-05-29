@@ -5,7 +5,8 @@ import (
 )
 
 type Assign struct {
-        *Context
+	Common
+        Context
 	
 	Field string
 	Value *commonElementsVariable.Value
