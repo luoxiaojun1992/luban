@@ -5,6 +5,9 @@ import (
 )
 
 type Condition struct {
+        Common
+	Context
+	
 	LeftOperand   *commonElementsVariable.Value
 	Operator      string
 	RightOperands []*commonElementsVariable.Value
