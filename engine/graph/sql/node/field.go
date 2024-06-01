@@ -5,8 +5,8 @@ import (
 )
 
 type Field struct {
-        Common
+	Common
 	Context
-	
+
 	Fields []*commonElementsVariable.Value
 }
