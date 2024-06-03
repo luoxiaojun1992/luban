@@ -1,6 +1,6 @@
 module github.com/luoxiaojun1992/luban
 
-go 1.22
+go 1.22.3
 
 require github.com/onsi/gomega v1.33.0
 
