@@ -5,3 +5,7 @@ type Table struct {
 	Context
 	Name string `json:"name"`
 }
+
+func (t *Table) GetTable() string {
+	return t.Name
+}
