@@ -3,9 +3,9 @@ package node
 type Table struct {
 	Common
 	Context
-	Name string `json:"name"`
+	Table string `json:"table"`
 }
 
 func (t *Table) GetTable() string {
-	return t.Name
+	return t.Table
 }
