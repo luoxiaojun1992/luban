@@ -11,3 +11,7 @@ type Assign struct {
 	Field string
 	Value *commonElementsVariable.Value
 }
+
+func (a *Assign) GetAssignment() *Assign {
+	return a
+}
