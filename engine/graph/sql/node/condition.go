@@ -12,3 +12,7 @@ type Condition struct {
 	Operator      string
 	RightOperands []*commonElementsVariable.Value
 }
+
+func (c *Condition) GetCondition() *Condition {
+	return c
+}
