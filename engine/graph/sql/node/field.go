@@ -10,3 +10,7 @@ type Field struct {
 
 	Fields []*commonElementsVariable.Value
 }
+
+func (f *Field) GetField() *Field {
+	return f
+}
