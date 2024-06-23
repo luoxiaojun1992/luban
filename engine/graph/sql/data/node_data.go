@@ -10,4 +10,5 @@ type NodeData struct {
 	NodeType node.NodeType `json:"node_type"`
 
 	Assign *Assign `json:"assign"`
+	Condition *Condition `json:"condition"`
 }
