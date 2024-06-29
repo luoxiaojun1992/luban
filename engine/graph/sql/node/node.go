@@ -20,5 +20,6 @@ type INode interface {
 	SetNext(next INode)
 
 	GetTable() string
+	GetAssignment() *Assign
 	GetCondition() *Condition
 }
