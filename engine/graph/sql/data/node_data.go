@@ -9,8 +9,8 @@ type NodeData struct {
 	Name     string        `json:"name"`
 	NodeType node.NodeType `json:"node_type"`
 
-	Table *Table `json:"table"`
-	Field *Field `json:"field"`
-	Assignment *Assign `json:"assignment"`
-	Condition *Condition `json:"condition"`
+	Table      *Table     `json:"table"`
+	Field      *Field     `json:"field"`
+	Assignment *Assign    `json:"assignment"`
+	Condition  *Condition `json:"condition"`
 }
