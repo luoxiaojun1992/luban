@@ -9,3 +9,15 @@ type Table struct {
 func (t *Table) GetTable() string {
 	return t.Table
 }
+
+func (t *Table) GetField() *Field {
+	return nil
+}
+
+func (t *Table) GetAssignment() *Assign {
+	return nil
+}
+
+func (t *Table) GetCondition() *Condition {
+	return nil
+}

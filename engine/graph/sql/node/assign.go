@@ -15,3 +15,15 @@ type Assign struct {
 func (a *Assign) GetAssignment() *Assign {
 	return a
 }
+
+func (a *Assign) GetTable() string {
+	return ""
+}
+
+func (a *Assign) GetField() *Field {
+	return nil
+}
+
+func (a *Assign) GetCondition() *Condition {
+	return nil
+}
