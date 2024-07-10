@@ -1,5 +1,7 @@
 # Luban
 
+## Companies with overtime regulations are prohibited from using this project!
+
 ## Description
 
 Luban is a framework for building low-code platforms or low-code applications. It is designed to be easy to use and extend.
