@@ -3,7 +3,7 @@ package elements
 import (
 	"fmt"
 	"strings"
-	
+
 	lubanSQL "github.com/luoxiaojun1992/luban/engine/ast/sql"
 )
 
@@ -20,7 +20,7 @@ func (c *Condition) ToRaw() string {
 	if len(c.RightOperands) > 1 {
 		rightSQLTpl = "(" + rightSQLTpl + ")"
 	}
-	
+
 	var rightOperandSQLList []string
 	for _, rightOperand := range c.RightOperands {
 		rightOperandSQLList = append(rightOperandSQLList, rightOperand.ToRaw())
